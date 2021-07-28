@@ -1,0 +1,184 @@
+$primary: #f841a6;
+$secondary: #59deff;
+$gray: #dfe0fe;
+
+%initStyle {
+    border-radius: 15px;
+    box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.4);
+    overflow: hidden;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to top, #d25be4, #c56bde, #ba77d6, #b181cd, #a98ac2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+*{
+    box-sizing: border-box;
+}
+.globe3{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.globe2{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.globe1{
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    z-index: 3;
+}
+
+.board{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba($color: #151771, $alpha: 0.4);
+    padding: 60px;
+    border: 5px solid $primary;
+    text-align: center;
+    font-size: 30px;
+    @extend %initStyle;
+
+    .title{
+        color: $primary;
+    }
+
+    table{
+        margin: 70px auto 0;
+        @extend %initStyle;
+
+        tr{
+            td{
+                width: 60px;
+                height: 60px;
+                cursor: pointer;
+
+                .x{
+                    color: $primary;
+                }
+                .o{
+                    color: $secondary;
+                }
+            }
+
+
+
+            &:nth-child(n) {
+                td:nth-child(1n){
+                    background-color: $gray;
+                }
+                td:nth-child(2n){
+                    background-color: white;
+                }
+            }
+            &:nth-child(2n) {
+                td:nth-child(1n) {
+                    background-color: white;
+                }
+                td:nth-child(2n) {
+                    background-color: $gray;
+                }
+            }
+        }
+    }
+
+}
+#newWindow{
+    font-size: 40px;
+    font-weight: bold;
+    height: 50px !important;
+    cursor: pointer;
+    color: $primary;
+}
+
+#myModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .myModalBody{
+        max-width: 500px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px 0 rgba($color: #000000, $alpha: 0.7);
+        color: white;
+        font-weight: bold;
+        font-size: 40px;
+        text-align: center;
+        animation-name: zoomin;
+        animation-duration: 0.5s;
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        .btn{
+             font-size: 40px;
+        }
+    }
+}
+
+@keyframes zoomin{
+    0%{
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:997px) {
+    .board{
+        max-width: 700px;
+        max-height: 80%;
+    }
+   
+}
+@media screen and (max-width:800px) {
+    .board{
+        max-width: 600px;
+        max-height: 75%;
+    }
+}
+@media screen and (max-width:620px) {
+    .board{
+        max-width: 440px;
+        max-height: 75%;
+        margin-top: -50px;
+    }
+    #newWindow{
+        display: none;
+    }
+    .title{
+        margin-top: -40px;
+    }
+    .globe1{
+        position: fixed;
+        bottom: 0;
+        left: 0%;
+        z-index: 0;
+    }
+}
